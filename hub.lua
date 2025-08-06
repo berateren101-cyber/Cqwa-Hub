@@ -1,6 +1,4 @@
 loadstring([===[
--- 📦 Cqwa Hub | Mobil Uyumlu | Tam Sürüm
--- ⚽ Özellikler: Reach (1-25), Falso, Drag, GUI, Aç/Kapa, Sekmeler
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local char = player.Character or player.CharacterAdded:Wait()
@@ -15,11 +13,11 @@ for _, obj in pairs(workspace:GetDescendants()) do
     end
 end
 
-local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-screenGui.Name = "CqwaHub"
-screenGui.ResetOnSpawn = false
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "CqwaHub"
+gui.ResetOnSpawn = false
 
-local frame = Instance.new("Frame", screenGui)
+local frame = Instance.new("Frame", gui)
 frame.Size = UDim2.new(0.4, 0, 0.45, 0)
 frame.Position = UDim2.new(0.3, 0, 0.25, 0)
 frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -40,7 +38,7 @@ closeBtn.Position = UDim2.new(0.9, 0, 0, 0)
 closeBtn.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
 closeBtn.TextScaled = true
 
-local openBtn = Instance.new("TextButton", screenGui)
+local openBtn = Instance.new("TextButton", gui)
 openBtn.Text = "✓"
 openBtn.Size = UDim2.new(0.05, 0, 0.05, 0)
 openBtn.Position = UDim2.new(0.02, 0, 0.9, 0)
@@ -157,11 +155,9 @@ RS.RenderStepped:Connect(function()
 	local pos = hrp.Position + dir * reach
 	hitbox.Position = pos
 	local dist = (ball.Position - hitbox.Position).Magnitude
-
 	if dist < 5 then
 		local force = Vector3.new(dir.X + 0.1, dir.Y + 0.1, dir.Z + 0.2).Unit * 60
 		ball.AssemblyLinearVelocity = force
-
 		task.spawn(function()
 			for i = 1, 50 do
 				if ball then
